@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Journey for Aarsh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { background-color: #fff0f3; font-family: 'Poppins', sans-serif; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; color: #444; overflow-x: hidden; }
+        #game-box { transition: 0.5s; }
+        h1 { color: #ff4d6d; font-size: 1.8rem; min-height: 100px; transition: 0.5s; }
+        .buttons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; position: relative; min-height: 200px; align-items: center; }
+        .btn { padding: 12px 25px; font-size: 1rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; touch-action: none; }
+        .correct { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255,77,109,0.3); }
+        .wrong { background-color: #adb5bd; color: white; opacity: 0.8; }
+        
+        /* Manifestation Section */
+        #manifest-section { display: none; padding: 20px; animation: fadeIn 2s ease-in; max-width: 600px; margin: 0 auto; }
+        .manifest-item { margin: 20px 0; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: left; border-left: 5px solid #ff4d6d; }
+        .manifest-item h3 { color: #d81b60; margin: 0 0 10px 0; font-size: 1.2rem; }
+        .manifest-item p { margin: 0; line-height: 1.6; font-size: 0.95rem; }
+        .highlight-box { background: #ff4d6d; color: white; border-left: none; text-align: center; }
+        .highlight-box h3 { color: white; }
+        .music-link { display: inline-block; margin: 20px 0; color: #ff4d6d; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div id="game-box">
+        <h1 id="question">In the whole universe, who do you trust the most and share everything with?</h1>
+        <div id="button-area" class="buttons-container">
+            <button class="btn wrong" onmouseover="fade(this)">Mom & Dad</button>
+            <button class="btn wrong" onmouseover="fade(this)">Friends</button>
+            <button class="btn correct" onclick="nextStep(2)">My Vishwa (Obv! ❤️)</button>
+            <button class="btn wrong" onmouseover="fade(this)">Siblings</button>
+        </div>
+    </div>
+
+    <div id="manifest-section">
+        <h1 style="color: #ff4d6d;">Our Forever Journey ❤️</h1>
+        
+        <a href="https://music.amazon.com/search/A+Thousand+Years+Christina+Perri" target="_blank" class="music-link">🎵 Click to Play "A Thousand Years" while you read...</a>
+
+        <div class="manifest-item">
+            <h3>👩‍⚕️👨‍⚕️ The Power Couple</h3>
+            <p>A wonderful team right now and forever. We are the Power Couple who will conquer every challenge with love and effort. We don't just exist; we thrive together.</p>
+        </div>
+
+        <div class="manifest-item">
+            <h3>🏔️ Our Sanctuary & Journey</h3>
+            <p>From our mountain lakehouse to global career milestones, we will be side-by-side. You have me forever, and I have you—celebrating every moment as a festival.</p>
+        </div>
+
+        <div class="manifest-item">
+            <h3>🙏 Our Legacy & Values</h3>
+            <p>Together, we will create new lives with high values and deep effort. We will build a life that makes our ancestors, Bhagwanji, and our future children proud of the path we've walked.</p>
+        </div>
+
+        <div class="manifest-item highlight-box">
+            <h3>✨ The Final Promise</h3>
+            <p>To love, to build, and to conquer. All my lives and all my days belong with you. I am yours forever. Happy Valentine's Day, my Dr. Aarsh.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function fade(el) { el.style.opacity = '0.1'; el.style.transform = 'scale(0.8)'; }
+
+        function nextStep(step) {
+            const q = document.getElementById('question');
+            const area = document.getElementById('button-area');
+
+            if (step === 2) {
+                q.innerText = "Who is the 'Crown' to your 'Root'? (The only one who makes your life complete?)";
+                area.innerHTML = `
+                    <button class="btn wrong" onmouseover="fade(this)">New Dental Drills</button>
+                    <button class="btn correct" onclick="nextStep(3)">My Vishwa ❤️</button>
+                    <button class="btn wrong" onmouseover="fade(this)">Dentistry</button>
+                `;
+            } 
+            else if (step === 3) {
+                q.innerText = "Will you be mine forever and manifest our dream life together?";
+                area.innerHTML = `
+                    <button class="btn correct" onclick="showManifestation()">YES, FOREVER! ❤️</button>
+                    <button id="noBtn" class="btn wrong" onmouseover="moveBtn()" ontouchstart="moveBtn()">No</button>
+                `;
+            }
+        }
+
+        function moveBtn() {
+            const btn = document.getElementById('noBtn');
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        }
+
+        function showManifestation() {
+            document.getElementById('game-box').style.display = 'none';
+            document.getElementById('manifest-section').style.display = 'block';
+            window.scrollTo(0,0);
+            
+            var end = Date.now() + (10 * 1000);
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4d6d', '#d81b60'] });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4d6d', '#d81b60'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+    </script>
+</body>
+</html>

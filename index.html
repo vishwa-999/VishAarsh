@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Gift for Aarsh</title>
+    <style>
+        body { 
+            background: #1a1a1a; 
+            color: white; 
+            font-family: 'Poppins', sans-serif; 
+            text-align: center; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            margin: 0; 
+        }
+        .door-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-top: 30px; 
+            flex-wrap: wrap; 
+        }
+        .door { 
+            width: 140px; 
+            height: 180px; 
+            background: #d81b60; 
+            border: 4px solid #ff4081; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        /* Valentine Door Styling */
+        .door.valentine:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 0 30px #ff4081; 
+        }
+        /* Birthday Door Styling */
+        .door.birthday { 
+            background: #3f51b5; 
+            border-color: #7986cb; 
+        }
+        .door.birthday:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 0 30px #7986cb; 
+        }
+        h1 { font-weight: 300; letter-spacing: 2px; padding: 0 20px; color: #ffeb3b; }
+        p { color: #888; margin-bottom: 20px; }
+        .label { margin-top: 10px; font-size: 0.9rem; color: #ccc; }
+    </style>
+</head>
+<body>
+    <h1>For Aarsh's Eyes Only</h1>
+    <p>Tap a door to start the journey...</p>
+    
+    <div class="door-container">
+        <div>
+            <a href="valentine.html" class="door valentine">❤️</a>
+            <div class="label">Valentine's</div>
+        </div>
+        
+        <div>
+            <a href="birthday.html" class="door birthday">🎂</a>
+            <div class="label">Birthday</div>
+        </div>
+    </div>
+</body>
+</html>
