@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Journey for Aarsh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { background-color: #1a0000; font-family: 'Poppins', sans-serif; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; color: #f5f5f5; overflow-x: hidden; }
+        #game-box { transition: 0.5s; }
+        h1 { color: #ffcccb; font-size: 1.8rem; min-height: 100px; transition: 0.5s; }
+        .buttons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; position: relative; min-height: 250px; align-items: center; max-width: 600px; margin: 0 auto; }
+        .btn { padding: 12px 25px; font-size: 0.9rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; touch-action: none; background: #3d0000; color: #ffcccb; border: 1px solid #800000; }
+        .correct { background-color: #800000; color: white; border: 1px solid #ff4d4d; box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
+        .wrong { opacity: 0.8; }
+        
+        #manifest-section { display: none; padding: 20px; animation: fadeIn 2s ease-in; max-width: 600px; margin: 0 auto; }
+        .manifest-item { margin: 20px 0; padding: 20px; background: #2b0000; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); text-align: left; border-left: 5px solid #800000; }
+        .manifest-item h3 { color: #ff4d4d; margin: 0 0 10px 0; font-size: 1.2rem; }
+        .manifest-item p { margin: 0; line-height: 1.6; font-size: 0.95rem; color: #e0e0e0; }
+        .highlight-box { background: #800000; color: white; border-left: none; text-align: center; }
+        .highlight-box h3 { color: #ffcccb; }
+        .music-link, .insta-link { display: inline-block; margin: 15px 0; color: #ff4d4d; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #ff4d4d; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div id="game-box">
+        <h1 id="question">In the whole universe, who do you trust and love the most?</h1>
+        <div id="button-area" class="buttons-container">
+            <button class="btn wrong" onmouseover="fade(this)">Colleagues</button>
+            <button class="btn wrong" onmouseover="fade(this)">Friends</button>
+            <button class="btn correct" onclick="nextStep(2)">My Vishwa ❤️</button>
+            <button class="btn wrong" onmouseover="fade(this)">Cousins</button>
+            <button class="btn wrong" onmouseover="fade(this)">Mom & Dad</button>
+            <button class="btn wrong" onmouseover="fade(this)">Siblings</button>
+        </div>
+    </div>
+
+    <div id="manifest-section">
+        <h1 style="color: #ffcccb;">Our Forever Journey ❤️</h1>
+        
+        <a href="https://music.amazon.co.uk/tracks/B075HH7Y5Z" target="_blank" class="music-link">🎵 Play "A Thousand Years" (Direct Link)</a>
+        <br>
+        <a href="https://www.instagram.com/vishwa.9/?hl=en-gb" target="_blank" class="insta-link">📸 Our Memories Together</a>
+
+        <div class="manifest-item">
+            <h3>👩‍⚕️👨‍⚕️ The Power Couple</h3>
+            <p>A wonderful team right now and forever. We are the Power Couple who will conquer every challenge with love and effort. We don't just exist; we thrive together.</p>
+        </div>
+
+        <div class="manifest-item">
+            <h3>🏔️ Our Sanctuary & Journey</h3>
+            <p>From our mountain lakehouse to global career milestones, we will be side-by-side. You have me forever, and I have you.</p>
+        </div>
+
+        <div class="manifest-item">
+            <h3>🙏 Our Legacy & Values</h3>
+            <p>Building a life that makes our ancestors, Bhagwanji, and our future children proud. Creating new lives with high values and deep effort.</p>
+        </div>
+
+        <div class="manifest-item highlight-box">
+            <h3>✨ The Final Promise</h3>
+            <p>To love, to build, and to conquer. I am yours forever. Happy Valentine's Day, my Dr. Aarsh.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function fade(el) { el.style.opacity = '0.05'; el.style.transform = 'scale(0.8)'; }
+
+        function nextStep(step) {
+            const q = document.getElementById('question');
+            const area = document.getElementById('button-area');
+            
+            // FIREWORKS between questions
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#800000', '#ff4d4d', '#ffcccb'] });
+
+            if (step === 2) {
+                q.innerText = "Who is the 'Crown' to your 'Root'? (The one who makes your life complete?)";
+                area.innerHTML = `
+                    <button class="btn wrong" onmouseover="fade(this)">New Scalers</button>
+                    <button class="btn correct" onclick="nextStep(3)">My Vishwa ❤️</button>
+                    <button class="btn wrong" onmouseover="fade(this)">Clinical Books</button>
+                `;
+            } 
+            else if (step === 3) {
+                q.innerText = "Will you be mine forever and manifest our dream life together?";
+                area.innerHTML = `
+                    <button class="btn correct" onclick="showManifestation()">YES, FOREVER! ❤️</button>
+                    <button id="noBtn" class="btn wrong" onmouseover="moveBtn()" ontouchstart="moveBtn()">No</button>
+                `;
+            }
+        }
+
+        function moveBtn() {
+            const btn = document.getElementById('noBtn');
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        }
+
+        function showManifestation() {
+            document.getElementById('game-box').style.display = 'none';
+            document.getElementById('manifest-section').style.display = 'block';
+            window.scrollTo(0,0);
+            
+            // Big Final Fireworks
+            var duration = 15 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
